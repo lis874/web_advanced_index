@@ -1,0 +1,118 @@
+/* media queries example */
+
+@media(max-width: 800px){
+	#myDiv{
+		background-color: black;
+	}
+}
+
+* {
+		cursor: url(blackcircle.png), auto;
+		/*cursor: pointer;*/
+}
+
+@font-face {
+  font-family: lab;
+  src: url(LabMono-Regular.otf);
+}
+@font-face {
+  font-family: monument;
+  src: url(MonumentGroteskTrial-Mono.woff);
+}
+
+body{
+	font-family: 'monument', monospace;
+	font-size: 2.2vw;
+	font-weight: 700;
+	background-color: #f0f0f0;
+	overflow-x: hidden;
+}
+
+a:link {
+    color: black; 
+    background-color: transparent; 
+    text-decoration: none;
+
+}
+
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.name{
+	font-size: 6vw;
+	position: relative;
+	left: 3vw;
+	top: 0vw;
+}
+
+.toc{
+	width: 80vw;
+	top: 8vw;
+	left: 6vw;
+    position: relative;
+    padding:2vw;
+}
+
+.toc1{
+	width: 22vw;
+	border: .3vw solid black;
+	padding: 2vw;
+	position: absolute;
+	left: 0vw;
+}
+
+.toc2{
+	width: 22vw;
+	border: .3vw solid black;
+	padding: 2vw;
+	position: absolute;
+	left: 30vw;
+}
+.toc3{
+	width: 22vw;
+	border: .3vw solid black;
+	padding: 2vw;
+	position: absolute;
+	left: 60vw;
+}
+
+.toc1:hover{
+	text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: .6vw .6vw #000000;
+}
+
+.toc2:hover{
+	text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: .6vw .6vw #000000;
+}
+
+.toc3:hover{
+	text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: .6vw .6vw #000000;
+}
+
+hr{
+	height:.15vw;
+	background-color: #000000;
+	border-color: #000000;
+}
+
+.description{
+	font-size: 1.8vw;
+	line-height: 2.3vw;
+}
+
+
+
+
+
+
+
+
+
