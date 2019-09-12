@@ -1,0 +1,17 @@
+.patternUnit{
+	display: inline-block;
+	height: 5vw;
+	width: 1vw;
+	border-radius: 50%;
+	background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,125,45,1) 100%);
+	margin-right: 5px;
+	margin-bottom: 20px;
+	background-color: rgb(255,0,0);
+}
+
+#wrapper{
+	right: 2vw;
+	left: 1vw;
+	top: 5vw;
+	position: absolute;
+}
