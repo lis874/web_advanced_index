@@ -1,12 +1,17 @@
+body, html{
+	padding: 0;
+	margin: 0;
+	overflow-y: hidden;
+}
+
+
 .patternUnit{
 	display: inline-block;
-	height: 5vw;
-	width: 1vw;
+	height: 6vw;
+	width: 1.2vw;
 	border-radius: 50%;
-	background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,125,45,1) 100%);
-	margin-right: 5px;
-	margin-bottom: 20px;
-	background-color: rgb(255,0,0);
+	margin-right: .1vw;
+	margin-bottom: 0vw;
 }
 
 #wrapper{
@@ -15,3 +20,4 @@
 	top: 5vw;
 	position: absolute;
 }
+
