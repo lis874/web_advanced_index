@@ -1,23 +1,34 @@
 body, html{
 	padding: 0;
 	margin: 0;
-	overflow-y: hidden;
 }
 
 
 .patternUnit{
-	display: inline-block;
-	height: 6vw;
-	width: 1.5vw;
+	display: inline-flex;
+	height: 2.6vw;
+	width: 2.6vw;
 	border-radius: 50%;
-	margin-right: .1vw;
-	margin-bottom: 0vw;
+	margin-right: 0.5vw;
+	margin-bottom: 0.5vw;
+/*    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);*/
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.patternUnit1{
+	height: 2vw;
+	width: 2vw;
 }
 
 #wrapper{
-	right: 1vw;
-	left: 1vw;
-	top: 2vw;
+	left: 8vw;
+	top: 3vw;
 	position: absolute;
+	width: 85vw;
+	bottom: 4vw;
 }
 
+.largerWidth{
+	height: 4.45vw;
+	width: 1.4vw;
+}
