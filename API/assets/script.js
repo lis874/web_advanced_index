@@ -133,9 +133,9 @@
 
         
      
-        sphere.position.x = 1 * Math.cos( time * .001 ) * 20;
-        sphere.position.y = 1 * Math.sin( time * .001 ) * 20;
-        sphere.position.z = 1 * Math.sin( time * .001 ) * 20;
+        sphere.position.x = Math.cos( time * .001 ) * 20;
+        sphere.position.y = Math.sin( time * .001 ) * 20;
+        sphere.position.z = Math.sin( time * .001 ) * 20;
 
         sphere4.position.x = Math.cos( time * .001 ) * 60;
         sphere5.position.x = Math.cos( time * .0003 ) * 60;

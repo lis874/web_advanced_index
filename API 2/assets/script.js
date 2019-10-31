@@ -8,94 +8,72 @@ fetch('https://api.kanye.rest')
 
 	console.log("results: ", jsonResults)
 
-	document.querySelector(".quoteBox").insertAdjacentHTML('afterbegin', `
-		${jsonResults.quote} 
-	`)
-
     var quote = jsonResults.quote;
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
-var resizeFunction = function(canvas){
-    var width = canvas.clientWidth;
-    var height = canvas.clientHeight;
-    if (width != canvas.width || height != canvas.height){
-        canvas.width = width;
-        canvas.height = height;
+
+
+
+ opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
+        if (err) {
+            alert('Font could not be loaded: ' + err);
+        } else {
+            var textToRender  = quote;
+            var fontSize = 70;
+            
+            console.log(font.glyphs); 
+
+            window.addEventListener('mousemove', function(e){
+
+
+            snapDistance = e.clientX ;
+            // snapStrength = e.clientY;
+
+            var options = {
+                kerning: true,
+                hinting: false,
+                features: {
+                liga: true,
+                rlig: true
+                }
+            };
+
+
+            snapPath = font.getPath(quote, 0, 100, 70);
+            doSnap(snapPath);
+            var snapCtx = document.getElementById('canvas').getContext('2d');
+            snapCtx.clearRect(0, 0, 1000, 1000);
+            snapPath.draw(snapCtx);
+            
+            })
+
+        }
+
+
+
+    var snapX = 0;
+    var snapY = 0;
+    var snapDistance = 50;
+    var snapStrength = 50;
+
+
+    function snap(v, distance, strength) {
+        return (v * (1.0 - strength)) + (strength * Math.round(v / distance) * distance);
     }
-}
 
-var yourCanvas = document.querySelector("#canvas");
-
-resizeFunction(yourCanvas);
-
-window.addEventListener("resize", function(){
-    resizeFunction(yourCanvas);
-})
-
- 
-
-
-opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
-    
-    var amount, glyph, ctx, x, y, fontSize;
-
-    if (err) {
-        alert('Font could not be loaded: ' + err);
-    } else {
-
-        var canvas = document.getElementById('canvas');
-
-        ctx = canvas.getContext('2d');
-
-
-        var path = font.getPath( quote , 50, 100, 100);
-        var points = font.drawPoints(ctx, quote, 50, 100, 100);
+    function doSnap(path) {
         
-        console.log(font.glyphs);
-        var G = font.glyphs.get(42);
-
-        console.log(G.getPath())
-
-        // G.getPath().commands[0].x = 500;
-        // G.getPath().commands[0].y = 500;
-
-        // ctx.clearRect(0, 0, 940, 300); // used to clear the canvas before redrawing
-
-
-        G.draw(ctx, 100, 300, 200);
-        G.drawPoints(ctx, 100, 300, 200);
-        path.draw(ctx);
-
-        // we want to get the specific font getPath
-
-        // then use the path (doSnap)
-
-        // doSnap cycles through each letter, and updates each command (x and y coordinates)
-        
-        function snapDistanceChanged(e) {
-            snapDistance = e.value;
-            document.getElementById('snapDistance').innerHTML = '' + snapDistance;
-            renderText();
-        }
-
-        function snap(v, distance, strength) {
-            return (v * (1.0 - strength)) + (strength * Math.round(v / distance) * distance);
-        }
-
-        
-        function doSnap(path) {
-            var i;
-            var snapStrength = 80
-            var strength = snapStrength / 100.0;
-            for (i = 0; i < path.commands.length; i++) {
-                var cmd = path.commands[i];
+        var i;
+        var strength = snapStrength / 100.0;
+        for (i = 0; i < path.commands.length; i++) {
+            var cmd = path.commands[i];
             if (cmd.type !== 'Z') {
                 cmd.x = snap(cmd.x + snapX, snapDistance, strength) - snapX;
                 cmd.y = snap(cmd.y + snapY, snapDistance, strength) - snapY;
-            }   
+            }
             if (cmd.type === 'Q' || cmd.type === 'C') {
                 cmd.x1 = snap(cmd.x1 + snapX, snapDistance, strength) - snapX;
                 cmd.y1 = snap(cmd.y1 + snapY, snapDistance, strength) - snapY;
@@ -109,35 +87,43 @@ opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
 
 
 
+   
+    });
 
-        window.addEventListener('mousemove', function(){
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
 
-            // update the snap (probably with Math.random())
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+      }
+      
+      var canvas = document.getElementById('canvas1');
+      var context = canvas.getContext('2d');
+      var maxWidth = 500;
+      var lineHeight = 40;
+      var x = (canvas.width - maxWidth) / 2;
+      var y = 60;
+      var text = quote;
 
-            // redraw
-            // ctx.clearRect(0, 0, 940, 300);
-            // path.draw(ctx)
+      context.font = '36pt Calibri';
+      context.fillStyle = '#333';
 
-            function renderText() {
-               
-                if (drawPoints) {
-                    font.drawPoints(ctx, quote, 50, 50, 50);
-                }
-                if (drawMetrics) {
-                    font.drawMetrics(ctx, quote, 50, 50, 50);
-                }
 
-                snapPath = font.getPath(quote, 0, 200, 30);
-                doSnap(snapPath);
-                var snapCtx = document.getElementById('canvas').getContext('2d');
-                snapCtx.clearRect(0, 0, 940, 300);
-                snapPath.draw(snapCtx);
-            }
+wrapText(context, quote, x, y, maxWidth, lineHeight);
 
-        })
-
-    }
-});
 
 
 
@@ -150,8 +136,6 @@ opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
 
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 
