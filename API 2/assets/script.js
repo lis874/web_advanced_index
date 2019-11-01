@@ -35,10 +35,34 @@ fetch('https://api.kanye.rest')
             var textToRender  = quote;
             var fontSize = 20;
             
-            console.log(font.glyphs); 
+            console.log(font.glyphs);
+
+
+
+            var quotewords = quote.split(' '); 
+            console.log(quotewords);
+
+            // add each line (probably by character count):
+            var quotelines = [];
+            var templine = '';
+            
+            for (var i = 0; i < quotewords.length; i++) {
+                if(templine.length < 15){ // add to this line if total is less than 20 characters
+                    templine += quotewords[i] + ' ';
+                }else{ // if above 20 characters:
+                    quotelines.push(templine); // push templine to array
+                    templine = quotewords[i]; // reset templine with overflowed word
+                }
+                if(i === quotewords.length + 1 ){ //if last element, add to quote
+                    quotelines.push(templine);
+                }
+            }
+
+             console.log(quotelines);
+
+
 
             window.addEventListener('mousemove', function(e){
-
 
             snapDistance = e.clientY ;
             // snapStrength = e.clientY;
@@ -52,12 +76,18 @@ fetch('https://api.kanye.rest')
                 }
             }
 
-
-            snapPath = font.getPath(quote, 0, 200, 40);
-            doSnap(snapPath);
             var snapCtx = document.getElementById('canvas').getContext('2d');
             snapCtx.clearRect(0, 0, 2000, 2000);
-            snapPath.draw(snapCtx);
+            // snapPath = font.getPath(quote, 0, 200, 40);
+            // doSnap(snapPath);
+            // snapPath.draw(snapCtx);
+
+             // now for each line, you want to run snapPath:
+                for (var i = 0; i < quotelines.length; i++) {
+                    snapPath = font.getPath(quotelines[i], 0, (100 + (100*i)), 60);
+                    doSnap(snapPath);
+                    snapPath.draw(snapCtx);
+                }
             
             })
 
