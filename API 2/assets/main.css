@@ -1,9 +1,13 @@
 body { 
 	margin: 0;
 	font-size: 4vw;
+	overflow-y: hidden;
 }
 
-canvas{	
+.quoteBox{
+	position: absolute;
+	top: 12vw;
+	left: 5vw;
 
 }
 

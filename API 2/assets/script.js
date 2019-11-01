@@ -1,5 +1,4 @@
 
-
 fetch('https://api.kanye.rest')
 .then(function(results){
 	return results.json()
@@ -11,8 +10,20 @@ fetch('https://api.kanye.rest')
     var quote = jsonResults.quote;
 
 
-//////////////////////////////////////////////////////////////////////////////
+// fetch('https://api.adviceslip.com/advice')
+// .then(function(results){
+//     return results.json()
+// })
+// .then(function(jsonResults){
 
+//     console.log("results: ", jsonResults)
+
+//     var quote = jsonResults.slip.advice;
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -22,14 +33,14 @@ fetch('https://api.kanye.rest')
             alert('Font could not be loaded: ' + err);
         } else {
             var textToRender  = quote;
-            var fontSize = 70;
+            var fontSize = 20;
             
             console.log(font.glyphs); 
 
             window.addEventListener('mousemove', function(e){
 
 
-            snapDistance = e.clientX ;
+            snapDistance = e.clientY ;
             // snapStrength = e.clientY;
 
             var options = {
@@ -39,13 +50,13 @@ fetch('https://api.kanye.rest')
                 liga: true,
                 rlig: true
                 }
-            };
+            }
 
 
-            snapPath = font.getPath(quote, 0, 100, 70);
+            snapPath = font.getPath(quote, 0, 200, 40);
             doSnap(snapPath);
             var snapCtx = document.getElementById('canvas').getContext('2d');
-            snapCtx.clearRect(0, 0, 1000, 1000);
+            snapCtx.clearRect(0, 0, 2000, 2000);
             snapPath.draw(snapCtx);
             
             })
@@ -90,39 +101,39 @@ fetch('https://api.kanye.rest')
    
     });
 
-function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        var words = text.split(' ');
-        var line = '';
+// function wrapText(context, text, x, y, maxWidth, lineHeight) {
+//         var words = text.split(' ');
+//         var line = '';
 
-        for(var n = 0; n < words.length; n++) {
-          var testLine = line + words[n] + ' ';
-          var metrics = context.measureText(testLine);
-          var testWidth = metrics.width;
-          if (testWidth > maxWidth && n > 0) {
-            context.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-          }
-          else {
-            line = testLine;
-          }
-        }
-        context.fillText(line, x, y);
-      }
+//         for(var n = 0; n < words.length; n++) {
+//           var testLine = line + words[n] + ' ';
+//           var metrics = context.measureText(testLine);
+//           var testWidth = metrics.width;
+//           if (testWidth > maxWidth && n > 0) {
+//             context.fillText(line, x, y);
+//             line = words[n] + ' ';
+//             y += lineHeight;
+//           }
+//           else {
+//             line = testLine;
+//           }
+//         }
+//         context.fillText(line, x, y);
+//       }
       
-      var canvas = document.getElementById('canvas1');
-      var context = canvas.getContext('2d');
-      var maxWidth = 500;
-      var lineHeight = 40;
-      var x = (canvas.width - maxWidth) / 2;
-      var y = 60;
-      var text = quote;
+//       var canvas = document.getElementById('canvas1');
+//       var context = canvas.getContext('2d');
+//       var maxWidth = 500;
+//       var lineHeight = 40;
+//       var x = (canvas.width - maxWidth) / 2;
+//       var y = 60;
+//       var text = quote;
 
-      context.font = '36pt Calibri';
-      context.fillStyle = '#333';
+//       context.font = '36pt Calibri';
+//       context.fillStyle = '#333';
 
 
-wrapText(context, quote, x, y, maxWidth, lineHeight);
+// wrapText(context, quote, x, y, maxWidth, lineHeight);
 
 
 
