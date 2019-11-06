@@ -10,22 +10,14 @@ fetch('https://api.kanye.rest')
     var quote = jsonResults.quote;
 
 
-// fetch('https://api.adviceslip.com/advice')
-// .then(function(results){
-//     return results.json()
-// })
-// .then(function(jsonResults){
-
-//     console.log("results: ", jsonResults)
-
-//     var quote = jsonResults.slip.advice;
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////
 
 
+var loadFonts = function(){
+
+}
 
 
  opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
@@ -42,18 +34,18 @@ fetch('https://api.kanye.rest')
             var quotewords = quote.split(' '); 
             console.log(quotewords);
 
-            // add each line (probably by character count):
             var quotelines = [];
             var templine = '';
             
             for (var i = 0; i < quotewords.length; i++) {
-                if(templine.length < 15){ // add to this line if total is less than 20 characters
+                if(templine.length + quotewords[i].length < 25){ 
                     templine += quotewords[i] + ' ';
-                }else{ // if above 20 characters:
-                    quotelines.push(templine); // push templine to array
-                    templine = quotewords[i]; // reset templine with overflowed word
+                }else{ 
+                    quotelines.push(templine); 
+                    templine = quotewords[i] + ' '; 
                 }
-                if(i === quotewords.length + 1 ){ //if last element, add to quote
+
+                if(i === quotewords.length - 1 ){ 
                     quotelines.push(templine);
                 }
             }
@@ -82,7 +74,7 @@ fetch('https://api.kanye.rest')
             // doSnap(snapPath);
             // snapPath.draw(snapCtx);
 
-             // now for each line, you want to run snapPath:
+
                 for (var i = 0; i < quotelines.length; i++) {
                     snapPath = font.getPath(quotelines[i], 0, (100 + (100*i)), 60);
                     doSnap(snapPath);
@@ -92,6 +84,33 @@ fetch('https://api.kanye.rest')
             })
 
         }
+
+
+
+
+loadFontsFunction('assets/labmono-regular-web.ttf');
+
+var fonts = [
+            'assets/EBGaramond-Regular.ttf',
+            'assets/labmono-regular-web.ttf',
+            'assets/NotoSerif-Black.ttf'
+
+            ];
+
+var counter = 0;
+setInterval(function(){
+
+    loadFontsFunction(fonts[counter]);
+
+    counter++;
+    if(counter <= fonts.length){
+        counter = 0;
+    }
+
+}, 3000)
+
+
+
 
 
 
@@ -130,40 +149,6 @@ fetch('https://api.kanye.rest')
 
    
     });
-
-// function wrapText(context, text, x, y, maxWidth, lineHeight) {
-//         var words = text.split(' ');
-//         var line = '';
-
-//         for(var n = 0; n < words.length; n++) {
-//           var testLine = line + words[n] + ' ';
-//           var metrics = context.measureText(testLine);
-//           var testWidth = metrics.width;
-//           if (testWidth > maxWidth && n > 0) {
-//             context.fillText(line, x, y);
-//             line = words[n] + ' ';
-//             y += lineHeight;
-//           }
-//           else {
-//             line = testLine;
-//           }
-//         }
-//         context.fillText(line, x, y);
-//       }
-      
-//       var canvas = document.getElementById('canvas1');
-//       var context = canvas.getContext('2d');
-//       var maxWidth = 500;
-//       var lineHeight = 40;
-//       var x = (canvas.width - maxWidth) / 2;
-//       var y = 60;
-//       var text = quote;
-
-//       context.font = '36pt Calibri';
-//       context.fillStyle = '#333';
-
-
-// wrapText(context, quote, x, y, maxWidth, lineHeight);
 
 
 
