@@ -15,12 +15,10 @@ fetch('https://api.kanye.rest')
 //////////////////////////////////////////////////////////////////////////////
 
 
-var loadFonts = function(){
-
-}
+var loadFontsFunction = function(fonturl){
 
 
- opentype.load('assets/labmono-regular-web.ttf', function(err, font) {
+ opentype.load(fonturl, function(err, font) {
         if (err) {
             alert('Font could not be loaded: ' + err);
         } else {
@@ -38,7 +36,7 @@ var loadFonts = function(){
             var templine = '';
             
             for (var i = 0; i < quotewords.length; i++) {
-                if(templine.length + quotewords[i].length < 25){ 
+                if(templine.length + quotewords[i].length < 23){ 
                     templine += quotewords[i] + ' ';
                 }else{ 
                     quotelines.push(templine); 
@@ -56,7 +54,7 @@ var loadFonts = function(){
 
             window.addEventListener('mousemove', function(e){
 
-            snapDistance = e.clientY ;
+            snapDistance = e.clientY;
             // snapStrength = e.clientY;
 
             var options = {
@@ -76,7 +74,7 @@ var loadFonts = function(){
 
 
                 for (var i = 0; i < quotelines.length; i++) {
-                    snapPath = font.getPath(quotelines[i], 0, (100 + (100*i)), 60);
+                    snapPath = font.getPath(quotelines[i], 0, (105 + (120*i)), 105);
                     doSnap(snapPath);
                     snapPath.draw(snapCtx);
                 }
@@ -84,33 +82,6 @@ var loadFonts = function(){
             })
 
         }
-
-
-
-
-loadFontsFunction('assets/labmono-regular-web.ttf');
-
-var fonts = [
-            'assets/EBGaramond-Regular.ttf',
-            'assets/labmono-regular-web.ttf',
-            'assets/NotoSerif-Black.ttf'
-
-            ];
-
-var counter = 0;
-setInterval(function(){
-
-    loadFontsFunction(fonts[counter]);
-
-    counter++;
-    if(counter <= fonts.length){
-        counter = 0;
-    }
-
-}, 3000)
-
-
-
 
 
 
@@ -145,10 +116,35 @@ setInterval(function(){
         }
     }
 
-
-
    
     });
+
+}
+
+
+
+
+  loadFontsFunction('assets/fonts/BigCaslon-Medium.ttf');
+
+    var fonts = [
+                'assets/fonts/Akzidenz-grotesk-black.ttf',
+                'assets/fonts/Avenir-Light.ttf',
+                'assets/fonts/BigCaslon-Medium.ttf'
+
+                ];
+
+    var counter = 0;
+    setInterval(function(){
+
+        loadFontsFunction(fonts[counter]);
+
+        counter = counter + 1;
+        console.log(counter)
+        if(counter >= fonts.length ){
+            counter = 0;
+        }
+
+    }, 5000)
 
 
 
