@@ -1,0 +1,110 @@
+body{
+	padding: 0;
+	margin: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	width: 100%;
+	height: 100%;
+}
+
+button{
+  background-color: #ffffff;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+label{
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 500;
+	font-size: 1.4vw;
+	color: black; 
+
+}
+
+input{
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 400;
+	font-size: 1.4vw;
+	color: black; 
+}
+
+#add{
+	font-size: 5vw;
+	top: 42vw;
+	right: 3vw;
+	position: fixed;
+}
+
+
+.tag{
+	width: 12vw;
+	height: 6vw;
+	background-color: #afffff;
+/*	border: 1px solid #aaaaaa;*/
+/*	border-radius: 8px;
+	margin: .2vw;*/
+	 position: relative;
+  padding: 0.5em 1em;
+  margin: 1.5em;
+  border-radius: .5vw;
+  overflow: hidden;
+  float: left;
+}
+
+.item{
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 500;
+	font-size: 1.4vw;
+	color: black; 
+	position: absolute;
+	top: 1vw;
+	left: 1vw;
+}
+
+.price{
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 500;
+	font-size: 1.8vw;
+	color: black; 
+	position: absolute;
+	top: 4.2vw;
+	right: 1vw;
+}
+
+.tag.is-pointer-down {
+  	box-shadow: -.7vw .7vw #ebebeb;
+
+}
+
+.tag:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+  width: 0;
+  border-width: 0vw;
+  border-color: transparent transparent  transparent transparent;
+  border-radius: 0 ;
+  transition: border-width .3s;
+  display: block;
+}
+
+
+.tag:hover:before {
+  border-width: .8vw;
+    border-color: #fff #fff transparent transparent;
+    border-radius: 0;
+    transition: 0;
+}
+
+
+
+
+
+
+
