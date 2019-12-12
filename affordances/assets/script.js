@@ -1,7 +1,4 @@
 
-
-
-
 var tagAmount = 0;
 
 if(localStorage.getItem("tagAmount")){
@@ -10,6 +7,8 @@ if(localStorage.getItem("tagAmount")){
 }
 
 var tags = {};
+var styles = "style_" + Math.ceil(Math.random()*3);
+
 
 if(localStorage.getItem("tags")){
 	tags = JSON.parse(localStorage.getItem("tags"));
@@ -20,9 +19,9 @@ if(localStorage.getItem("tags")){
 	for (var i = 0; i < tagAmount; i++) {
 			
 		if(tags["tag-" + i] !== undefined && tags["tag-" + i] !== null) {
-			var newTag = `<div class="tag" id="tag-${i}" style="left:${tags["tag-" + i].position[0]}px; top:${tags["tag-" + i].position[1]}px;">
-				<span class="item"> ${tags["tag-" + i].item} </span>
-				<span class="price"> $${tags["tag-" + i].price}</span>
+			var newTag = `<div class="tag ${tags["tag-" + i].style}" id="tag-${i}" style="background-color:${tags["tag-" + i].color}; left:${tags["tag-" + i].position[0]}px; top:${tags["tag-" + i].position[1]}px;">
+				<span > ${tags["tag-" + i].item} </span>
+				<span > $${tags["tag-" + i].price}</span>
 			</div>`;
 
 			document.querySelector("body").insertAdjacentHTML('beforeend', newTag);
@@ -44,32 +43,37 @@ if(localStorage.getItem("tags")){
 	}
 
 }
+ 
 
 
 function showInput() {
 
-	var red = Math.round(Math.random()*255);
-	var green = Math.round(Math.random()*255);
-	var blue = Math.round(Math.random()*255);
-	var newColor = `rgb(${red}, ${green}, ${blue})`;
 
-    var newTag = `<div class="tag" id="tag-${tagAmount}" style="background-color:${newColor}">
-			<span class="item"> ${document.getElementById("user_input1").value} </span>
-			<span class="price"> $${document.getElementById("user_input2").value}</span>
+
+	var red = Math.round(Math.random()*300);
+	var green = Math.round(Math.random()*300);
+	var blue = Math.round(Math.random()*300);
+	var newColor = `rgb(${red}, ${green}, ${blue})`;
+	var styles = "style_" + Math.ceil(Math.random()*3);
+
+
+    var newTag = `<div class="tag ${styles}" id="tag-${tagAmount}" style="background-color:${newColor}">
+			<span > ${document.getElementById("user_input1").value} </span>
+			<span > $${document.getElementById("user_input2").value}</span>
 		</div>`;
 
 
-		// console.log(newTag)
-
 		document.querySelector("body").insertAdjacentHTML('beforeend', newTag);
 
-		// save that item to localstorage
+	
 
 		var savedTag = {
 			id: "tag-" + tagAmount,
+			class: styles ,
 			item: document.getElementById("user_input1").value,
 			price: document.getElementById("user_input2").value,
 			position: [0,0],
+			color: newColor, 
 		}
 
 		tags["tag-" + tagAmount] = savedTag;
@@ -80,6 +84,11 @@ function showInput() {
 		tagAmount = tagAmount + 1;
 
 		localStorage.setItem("tagAmount", tagAmount);
+
+		
+
+		localStorage.clear();
+
 
 
 
@@ -106,13 +115,24 @@ function showInput() {
 
 
 
+
+
 var saveUserInfo = function(){
 	if (!storageAvailable('localStorage')){ return; }
 
 
-$(this).dblclick(function() {
-  localStorage.removeItem($(this));
-});
+$(".tag").dblclick(function() {
+  		var tags = localStorage.getItem('tags');
+  		tags = JSON.parse(tags);
+
+  		var tagId = $(this).attr("id");
+  		delete tags[tagId];
+
+  		// localStorage.removeItem(tags[tagId]);
+
+  		localStorage.setItem('tags', JSON.stringify(tags));
+	});
+
 		
 		
 };
