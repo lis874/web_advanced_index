@@ -158,7 +158,7 @@ input{
 
 }
 
-@media only screen and (max-width: g00px) {
+@media only screen and (max-width: 600px) {
 
 	form{
 		bottom: 3vh;
