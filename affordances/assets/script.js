@@ -1,4 +1,10 @@
 
+$('#add').on('click', function(){
+    $('.load').remove();
+});
+
+
+
 var tagAmount = 0;
 
 if(localStorage.getItem("tagAmount")){
@@ -7,19 +13,19 @@ if(localStorage.getItem("tagAmount")){
 }
 
 var tags = {};
-var styles = "style_" + Math.ceil(Math.random()*3);
+var styles = "style_" + Math.round(Math.random()*3);
 
 
 if(localStorage.getItem("tags")){
 	tags = JSON.parse(localStorage.getItem("tags"));
 		console.log("test tags",  tags)
 
-	// add previous tags back to screen:
+
 
 	for (var i = 0; i < tagAmount; i++) {
 			
 		if(tags["tag-" + i] !== undefined && tags["tag-" + i] !== null) {
-			var newTag = `<div class="tag ${tags["tag-" + i].style}" id="tag-${i}" style="background-color:${tags["tag-" + i].color}; left:${tags["tag-" + i].position[0]}px; top:${tags["tag-" + i].position[1]}px;">
+			var newTag = `<div class="tag ${tags["tag-" + i].class}" id="tag-${i}" style="background-color:${tags["tag-" + i].color}; left:${tags["tag-" + i].position[0]}px; top:${tags["tag-" + i].position[1]}px;">
 				<span > ${tags["tag-" + i].item} </span>
 				<span > $${tags["tag-" + i].price}</span>
 			</div>`;
@@ -50,11 +56,13 @@ function showInput() {
 
 
 
-	var red = Math.round(Math.random()*300);
-	var green = Math.round(Math.random()*300);
-	var blue = Math.round(Math.random()*300);
-	var newColor = `rgb(${red}, ${green}, ${blue})`;
-	var styles = "style_" + Math.ceil(Math.random()*3);
+	var red = Math.round(Math.random()*360);
+	// var green = Math.round(Math.random()*255);
+	// var blue = Math.round(Math.random()*255);
+	var newColor = `hsl(${red},85% ,50%)`;
+
+	var styles = "style_" + Math.ceil(Math.random()*4);
+
 
 
     var newTag = `<div class="tag ${styles}" id="tag-${tagAmount}" style="background-color:${newColor}">
@@ -87,7 +95,7 @@ function showInput() {
 
 		
 
-		localStorage.clear();
+		// localStorage.clear();
 
 
 
@@ -121,14 +129,12 @@ var saveUserInfo = function(){
 	if (!storageAvailable('localStorage')){ return; }
 
 
-$(".tag").dblclick(function() {
+	$(".tag").dblclick(function() {
   		var tags = localStorage.getItem('tags');
   		tags = JSON.parse(tags);
 
   		var tagId = $(this).attr("id");
   		delete tags[tagId];
-
-  		// localStorage.removeItem(tags[tagId]);
 
   		localStorage.setItem('tags', JSON.stringify(tags));
 	});
