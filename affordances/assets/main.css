@@ -56,11 +56,11 @@ input{
 	color: black; 
 	background-color: transparent;
 	width: 20vw;	
-	height: 10vw;
+	height: 5vw;
 	left: 1vw;
 	top: 0vw;
 	position: fixed;
-	padding: 2vw;
+	padding: 2vw 2vw 0vw 2vw;
 	z-index: 1;
 }
 
