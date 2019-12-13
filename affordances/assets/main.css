@@ -6,19 +6,10 @@ body{
 	cursor: all-scroll;
 
 }
+
 body::-webkit-scrollbar {
   display: none;
 }
-
-@media only screen and (max-width: 768px) {
-
-  label {
-  	font-size: 10vw;
-  }
-  
-}
-
-
 
 button{
   background-color: transparent;
@@ -30,8 +21,8 @@ button{
 }
 
 form{
-	bottom: 5vh;
-	right: 10vw;
+	bottom: 3vh;
+	right: 8vw;
 	position: fixed;
 	z-index: 1;
 }
@@ -66,19 +57,18 @@ input{
 	background-color: transparent;
 	width: 20vw;	
 	height: 10vw;
-	left: 5vw;
-	top: 3vw;
+	left: 1vw;
+	top: 0vw;
 	position: fixed;
-	padding: 3vw;
-/*	border: .3vw solid black;*/
+	padding: 2vw;
 	z-index: 1;
 }
 
 
 #add{
-	font-size: 5vw;
-	bottom: 5vh;
-	right: 3vw;
+	font-size: 5.2vw;
+	bottom: 2.4vh;
+	right: 2vw;
 	position: fixed;
 	z-index: 1;
 }
@@ -168,6 +158,42 @@ input{
 
 }
 
+@media only screen and (max-width: 500px) {
+
+	form{
+		bottom: 3vh;
+		right: 15vw;
+		position: fixed;
+		z-index: 1;
+	}
+
+
+	label{
+		font-size: 5vw;
+	}
+
+	input{
+		font-size: 5vw;
+		width: 30vw;
+		border: .1vw solid black;
+		margin-bottom: 1vw;
+
+	}
+
+  	#add{
+  		font-size: 14vw;
+  		bottom: 1vh;
+  	}
+
+  	.load{
+		font-size: 5vw;
+		left: 2vw;
+		top: 1vw;
+		width: 40vw;
+	}
+
+  
+}
 
 
 

@@ -1,10 +1,4 @@
 
-$('#add').on('click', function(){
-    $('.load').remove();
-});
-
-
-
 var tagAmount = 0;
 
 if(localStorage.getItem("tagAmount")){
@@ -146,22 +140,6 @@ var saveUserInfo = function(){
 
 
 
-
-
 saveUserInfo();    
 
 
-
-
-
-
-
-
-
-// function myFunction() {
-//   var x = document.createElement("INPUT");
-//   x.setAttribute("type", "text");
-//   x.setAttribute("value", "Hello World!");
-//   document.body.appendChild(x);
-
-// }
